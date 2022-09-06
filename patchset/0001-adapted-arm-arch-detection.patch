@@ -1,0 +1,39 @@
+From 1cddc27cc72b7876dca858bb5c20a69cfa076376 Mon Sep 17 00:00:00 2001
+From: Matthias Wetzel <wetzel.m.j@googlemail.com>
+Date: Mon, 29 Aug 2022 23:19:39 +0800
+Subject: [PATCH 1/1] adapted arm arch detection
+
+---
+ Makefile.defs | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/Makefile.defs b/Makefile.defs
+index 003b98f21..efcd8f830 100644
+--- a/Makefile.defs
++++ b/Makefile.defs
+@@ -273,7 +273,7 @@ CC_ARCH=arm6
+ else ifneq ($(strip $(filter $(arm7_macros), $(predef_macros))),)
+ CC_ARCH=arm7
+ else # arm6_macros
+-CC_ARCH=arm
++CC_ARCH=arm7
+ endif # arm6_macros
+ 
+ else ifneq ($(strip $(filter $(ppc64_macros), $(predef_macros))),)
+@@ -1128,11 +1128,11 @@ ifeq		($(CC_NAME), gcc)
+ 					-Wall -marm
+ 			#if gcc 4.x+
+ ifeq			($(CC_CLASS), 4.x)
+-					CFLAGS+=-mcpu=strongarm1100 -ftree-vectorize
++					CFLAGS+= -ftree-vectorize
+ else
+ 			#if gcc 3.0+
+ ifeq			($(CC_CLASS), 3.x)
+-					CFLAGS+= -mcpu=strongarm1100
++					CFLAGS+= 
+ else
+ ifeq			($(CC_CLASS), 2.9x) #older gcc version (2.9[1-5])
+ $(warning 			Old gcc detected ($(CC_SHORTVER)), use  gcc 3.0.x \
+-- 
+2.27.0.windows.1
+
